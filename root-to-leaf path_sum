@@ -1,0 +1,34 @@
+# root-to-leaf path sum
+
+class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if not root:
+            return False
+        stack = [root]
+        while stack:
+            current = stack.pop()
+            if current.val == sum and not current.left and not current.right:
+                return True
+            
+            if current.left:
+                current.left.val += current.val
+                stack.append(current.left)
+                
+            if current.right:
+                current.right.val += current.val
+                stack.append(current.right)
+                
+        return False
+        
+Example:
+
+Given the below binary tree and sum = 22,
+
+      5
+     / \
+    4   8
+   /   / \
+  11  13  4
+ /  \      \
+7    2      1
+return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
