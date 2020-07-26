@@ -1,2 +1,2 @@
 # LeetCode_Practice
-Optimal Solutions for LeetCode Programs
+Daily Practice Questions with Solution
