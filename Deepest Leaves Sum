@@ -1,0 +1,26 @@
+# Deepest Leaves Sum
+class Solution:
+    def deepestLeavesSum(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        level_sum=0
+        stack=[root]
+
+        while len(stack)!=0:
+            x=len(stack)
+            level_sum=0   #making level sum zero for every level
+            for i in range(x):
+                a=stack.pop(0)
+
+                if a.left:
+                    stack.append(a.left)
+                if a.right:
+                    stack.append(a.right)
+                if not a.left and not a.right:
+                    level_sum+=a.val
+            
+        return level_sum
+        
+  Example 1:
+Input: root = [1,2,3,4,5,null,6,7,null,null,null,null,8]
+Output: 15
