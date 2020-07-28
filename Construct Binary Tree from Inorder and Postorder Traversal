@@ -1,0 +1,33 @@
+#   Construct Binary Tree from Inorder and Postorder Traversal
+
+
+
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        def build(start,end):
+            
+            if start>end:
+                return None
+            
+            val=postorder.pop()
+            node=TreeNode(val)
+            
+            index=idx_list[val]
+            node.right=build(index+1,end)
+            node.left=build(start,index-1)
+            return node
+            
+        idx_list={val:idx for idx,val in enumerate(inorder)}
+        return build(0,len(inorder)-1)
+        
+ ***For example, given
+
+inorder = [9,3,15,20,7]
+postorder = [9,15,7,20,3]
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
