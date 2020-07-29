@@ -1,0 +1,24 @@
+# Binary Search Tree to Greater Sum Tree
+
+class Solution:
+    def bstToGst(self, root: TreeNode) -> TreeNode:
+        if not root:return root
+        node=root
+        stack=[]
+        cursum=0
+        while node or stack:
+            while node:
+                stack.append(node)
+                node=node.right
+            node=stack.pop()
+            node.val+=cursum
+            cursum=node.val
+            node=node.left
+        return root
+        
+ Example 1:
+
+
+
+Input: [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
+Output: [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
