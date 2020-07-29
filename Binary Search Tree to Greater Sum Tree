@@ -22,3 +22,24 @@ class Solution:
 
 Input: [4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
 Output: [30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
+
+
+#My Solution Using recursion
+
+class Solution:
+    def __init__(self):
+        self.sum=0
+        
+        
+    def bstToGst(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        if root:
+            self.bstToGst(root.right)
+            
+            self.sum+=root.val
+            root.val=self.sum
+            
+            self.bstToGst(root.left)
+            
+        return root
