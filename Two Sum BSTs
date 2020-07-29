@@ -1,0 +1,52 @@
+# Two Sum BSTs
+
+class Solution:
+    
+    def __init__(self):
+        self.result = False
+    
+    def twoSumBSTs(self, root1: TreeNode, root2: TreeNode, target: int) -> bool:
+        """
+        BF:
+        create two lists of nodes, one for tree 1, one for tree 2
+        two sum for target sum
+        
+        controlled inorder traverse both trees at same time
+        [1,2,6,9]
+         ^
+        [1,3,8]
+         ^
+        target = 10
+        
+        traverse one tree and store vals in hashmap
+        traverse other and check for difference in hasmap
+        
+        """
+        
+        nodes = set()
+        def store(node):
+            if not node:
+                return
+            store(node.left)
+            nodes.add(node.val)
+            store(node.right)
+        
+        def inorder(node):
+            if not node:
+                return
+            inorder(node.left)
+            if target - node.val in nodes:
+                self.result = True
+                return
+            inorder(node.right)
+        
+        store(root1)
+        inorder(root2)
+        return self.result
+ Example 1:
+
+
+
+Input: root1 = [2,1,4], root2 = [1,0,3], target = 5
+Output: true
+Explanation: 2 and 3 sum up to 5.
