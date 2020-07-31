@@ -1,0 +1,35 @@
+# Code
+
+import heapq
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        stones=[-x for x in stones]
+        heapq.heapify(stones)
+        #print(stones)
+        l=len(stones)
+        
+        while(l>1):
+            x=heapq.heappop(stones)
+            y=heapq.heappop(stones)
+            l-=2
+            #print(x,y)
+            if x!=y:
+                heapq.heappush(stones,x-y)
+                l+=1
+                
+        #print(l)
+                
+        if l==1:
+            return -heapq.heappop(stones)
+        else:
+            return 0
+ 
+ Example 1:
+
+Input: [2,7,4,1,8,1]
+Output: 1
+Explanation: 
+We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,
+we combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,
+we combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
+we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.
