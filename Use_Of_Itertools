@@ -1,0 +1,18 @@
+To print the same consequent elements by grouping:
+
+we can use itertools.
+
+import itertools
+
+s="aaabbcddef"
+
+for char,group in itertools.groupby(s):
+  print(char,list(group) #make the group to list
+  
+output:
+a,['a','a','a']
+b,['b','b']
+c,['c']
+d,['d','d']
+e,['e']
+f,['f']
